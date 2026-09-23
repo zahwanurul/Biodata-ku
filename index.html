@@ -1,1 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Interaktif - Neobrutalism Style</title>
+    <!-- Google Fonts untuk Tipografi Tegas & Modern -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --pink-soft: #FFC2D1;
+            --butter-yellow: #FFE5A3;
+            --white: #FFFFFF;
+            --dark: #1E1E1E;
+            --border-thick: 4px solid #1E1E1E;
+            --shadow-neo: 6px 6px 0px #1E1E1E;
+            --shadow-neo-hover: 2px 2px 0px #1E1E1E;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--butter-yellow);
+            color: var(--dark);
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+        }
+
+        /* --- LAYOUT UTAMA (BENTO & CONTAINER) --- */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            padding-top: 20px;
+        }
+
+        /* --- BASE STYLING KARTU NEOBRUTALISM --- */
+        .neo-card {
+            background: var(--white);
+            border: var(--border-thick);
+            box-shadow: var(--shadow-neo);
+            padding: 30px;
+            border-radius: 0px; /* Ciri khas brutalism: sudut tajam */
+            transition: all 0.2s ease;
+        }
+
+        .neo-card:hover {
+            transform: translate(4px, 4px);
+            box-shadow: var(--shadow-neo-hover);
+        }
+
+        /* --- HERO SECTION (KOTAK BESAR UTAMA) --- */
+        .hero-card {
+            grid-column: span 2;
+            background: var(--pink-soft);
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .profile-img-container {
+            border: var(--border-thick);
+            background: var(--white);
+            width: 150px;
+            height: 150px;
+            flex-shrink: 0;
+            box-shadow: 4px 4px 0px #1E1E1E;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem; /* Sementara memakai emoji, bisa diganti tag <img> */
+            overflow: hidden;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            line-height: 1.1;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .badge-title {
+            background: var(--white);
+            border: 2px solid var(--dark);
+            padding: 4px 12px;
+            font-weight: 600;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        /* --- QUICK INFO CARD --- */
+        .info-card {
+            grid-column: span 1;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .info-list {
+            list-style: none;
+        }
+
+        .info-list li {
+            margin-bottom: 12px;
+            font-size: 1.05rem;
+        }
+
+        .info-list strong {
+            background: var(--pink-soft);
+            padding: 2px 6px;
+            border: 1px solid var(--dark);
+        }
+
+        /* --- ABOUT ME CARD --- */
+        .about-card {
+            grid-column: span 1;
+            background: var(--white);
+        }
+
+        .about-card h2, .skills-card h2, .experience-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-bottom: var(--border-thick);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        /* --- SKILLS CARD --- */
+        .skills-card {
+            grid-column: span 2;
+            background: var(--white);
+        }
+
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .skill-tag {
+            background: var(--butter-yellow);
+            border: 2px solid var(--dark);
+            padding: 8px 16px;
+            font-weight: 600;
+            box-shadow: 3px 3px 0px #1E1E1E;
+            cursor: pointer;
+            transition: all 0.1s ease;
+        }
+
+        .skill-tag:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 1px 1px 0px #1E1E1E;
+            background: var(--pink-soft);
+        }
+
+        /* --- EXPERIENCE & TIMELINE --- */
+        .experience-card {
+            grid-column: span 3;
+            background: var(--white);
+        }
+
+        .timeline {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .timeline-item {
+            border: 2px solid var(--dark);
+            padding: 20px;
+            background: var(--butter-yellow);
+            box-shadow: 4px 4px 0px #1E1E1E;
+        }
+
+        .timeline-item.alt {
+            background: var(--pink-soft);
+        }
+
+        .year-badge {
+            background: var(--white);
+            border: 2px solid var(--dark);
+            padding: 2px 8px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* --- INTERACTIVE ACTION INTERFACES & BUTTONS --- */
+        .action-card {
+            grid-column: span 3;
+            background: var(--pink-soft);
+            text-align: center;
+            padding: 40px;
+        }
+
+        .neo-btn {
+            background: var(--butter-yellow);
+            color: var(--dark);
+            border: var(--border-thick);
+            padding: 15px 35px;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: var(--shadow-neo);
+            transition: all 0.1s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .neo-btn:hover {
+            transform: translate(4px, 4px);
+            box-shadow: var(--shadow-neo-hover);
+            background: var(--white);
+        }
+
+        /* --- RESPONSIVE DESIGN (UX MOBILITAS) --- */
+        @media (max-width: 900px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+            .hero-card, .info-card, .about-card, .skills-card, .experience-card, .action-card {
+                grid-column: span 1;
+            }
+            .hero-card {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- 1. HERO SECTION -->
+        <section class="neo-card hero-card">
+            <!-- Ganti emoji dengan tag <img src="foto-kamu.jpg" alt="Foto"> jika sudah ada file -->
+            <div class="profile-img-container">👩‍💻</div> 
+            <div class="hero-text">
+                <h1>Halo, Saya <br>Clarissa Utama</h1>
+                <p>Kreator Digital & Web Designer berbasis di Bandung.</p>
+                <span class="badge-title">✨ Tersedia untuk Kerja Kontrak</span>
+            </div>
+        </section>
+
+        <!-- 2. QUICK INFO -->
+        <aside class="neo-card info-card">
+            <ul class="info-list">
+                <li>📍 <strong>Lokasi:</strong> Bandung, ID</li>
+                <li>📧 <strong>Surel:</strong> hello@clarissa.me</li>
+                <li>🎓 <strong>Edukasi:</strong> S1 Teknik Informatika</li>
+                <li>🎨 <strong>Fokus:</strong> UI/UX & Front-End</li>
+            </ul>
+        </aside>
+
+        <!-- 3. ABOUT ME -->
+        <section class="neo-card about-card">
+            <h2>Tentang</h2>
+            <p style="line-height: 1.6;">
+                Saya senang menjembatani antara logika kode dan keindahan visual. Menggunakan pendekatan desain neobrutalism yang berani untuk menciptakan pengalaman web yang tidak terlupakan.
+            </p>
+        </section>
+
+        <!-- 4. SKILLS SECTION -->
+        <section class="neo-card skills-card">
+            <h2>Keahlian Saya</h2>
+            <p>Klik keahlian untuk memunculkan efek interaktif mini!</p>
+            <div class="skills-grid">
+                <div class="skill-tag" onclick="popEffect(this)">HTML & CSS</div>
+                <div class="skill-tag" onclick="popEffect(this)">JavaScript</div>
+                <div class="skill-tag" onclick="popEffect(this)">UI/UX Design</div>
+                <div class="skill-tag" onclick="popEffect(this)">Figma</div>
+                <div class="skill-tag" onclick="popEffect(this)">React.js</div>
+                <div class="skill-tag" onclick="popEffect(this)">Responsive Layout</div>
+            </div>
+        </section>
+
+        <!-- 5. EXPERIENCE TIMELINE -->
+        <section class="neo-card experience-card">
+            <h2>Riwayat & Pengalaman</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <span class="year-badge">2024 - Sekarang</span>
+                    <h3>Senior UI Designer</h3>
+                    <p style="margin-top: 5px; font-size: 0.95rem;">Mendesain antarmuka aplikasi seluler dan web untuk berbagai startup teknologi nasional.</p>
+                </div>
+                <div class="timeline-item alt">
+                    <span class="year-badge">2022 - 2024</span>
 
